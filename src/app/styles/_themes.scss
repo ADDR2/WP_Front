@@ -1,0 +1,18 @@
+$themes: (
+  light: (
+    backgroundColor: white,
+    buttonsColor: #13C1AC,
+    hoveredButtonsColor: darken(#13C1AC, 5%),
+    focusedButtonsColor: darken(#13C1AC, 10%),
+    inputContainerBackgrounColor: darken(white, 10%),
+    sliderBarColor: darken(white, 25%),
+  ),
+  dark: (
+    backgroundColor: darken(white, 40%),
+    buttonsColor: darken(#13C1AC, 20%),
+    hoveredButtonsColor: darken(#13C1AC, 10%),
+    focusedButtonsColor: darken(#13C1AC, 5%),
+    inputContainerBackgrounColor: darken(white, 30%),
+    sliderBarColor: darken(white, 10%),
+  ),
+);

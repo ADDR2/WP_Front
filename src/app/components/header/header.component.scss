@@ -1,0 +1,138 @@
+@import '../../styles/layout';
+@import '../../styles/functions';
+@import '../../styles/mixins';
+@import '../../styles/themes';
+@import '../../styles/animations';
+
+
+:host-context::ng-deep  {
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: $header-height;
+        width: auto;
+        padding: 0 10px;
+        min-width: 320px;
+        
+        @include themify($themes) {
+            background-color: themed('backgroundColor');
+        }
+    }
+
+    .settings-container {
+        position: relative;
+        height: 40px;
+        width: $settings-container-width;
+        overflow: hidden;
+        background-color: inherit;
+        transition: none;
+    }
+
+    .header-settings-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        outline: none;
+        border: none;
+        width: $settings-button-width;
+        height: 40px;
+        cursor: pointer;
+        padding: 8px 0;
+        text-align: center;
+        border-radius: 50%;
+        z-index: 3;
+        
+        &.disabled {
+            @include applyStandardAnimation(moveSettingsButtonBack, reverse);
+
+            & > .header-settings-icon {
+                @include applyStandardAnimation(rotateSettingsButtonBack, reverse);
+            }
+        }
+        
+        &.enabled {
+            transform: translateX(#{$settings-button-translation});
+            @include applyStandardAnimation(moveSettingsButton, reverse);
+
+            & > .header-settings-icon {
+                transform: rotate(-90deg);
+                @include applyStandardAnimation(rotateSettingsButton, reverse);
+            }
+        }
+
+        @include themify($themes) {
+            background-color: themed('buttonsColor');
+
+            &:hover {
+                background-color: themed('hoveredButtonsColor');
+            }
+
+            &:active {
+                background-color: themed('focusedButtonsColor');
+            }
+        }
+    }
+
+    .header-settings-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .envelope {
+        position: absolute;
+        width: $settings-container-width;
+        height: 40px;
+        background-color: inherit;
+        border-radius: 30px;
+        border: none;
+        z-index: 2;
+        
+        &.disabled {
+            @include applyStandardAnimation(moveEnvelopeBack, reverse, 50ms);
+        }
+
+        &.enabled {
+            transform: translateX(-$settings-container-width);
+            @include applyStandardAnimation(moveEnvelope, reverse, 50ms);
+        }
+    }
+
+    .input-container {
+        position: absolute;
+        width: $settings-container-width;
+        height: 40px;
+        z-index: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-radius: 30px;
+        border: none;
+
+        @include themify($themes) {
+            background-color: themed('inputContainerBackgrounColor');
+        }
+    }
+
+    .left-option {
+        margin: 0 5px 0 0;
+        font-size: 14px
+    }
+
+    .mat-slide-toggle {
+        font-size: 14px;
+        margin: 0 7px 0 0;
+
+        & .mat-slide-toggle-thumb {
+            @include themify($themes) {
+                background-color: themed('buttonsColor');
+            }
+        }
+
+        & .mat-slide-toggle-bar {
+            @include themify($themes) {
+                background-color: themed('sliderBarColor');
+            }
+        }
+    }
+}

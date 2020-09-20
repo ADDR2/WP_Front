@@ -1,0 +1,5 @@
+@import './styles/mixins';
+
+::ng-deep .app-container * {
+    @include applyColorTransitions;
+}

@@ -1,0 +1,36 @@
+<div class="header-container">
+    <div class="search-container">
+
+    </div>
+
+    <div class="settings-container">
+        <button
+            aria-label="App Settings"
+            class="header-settings-button"
+            [ngClass]="{ 'enabled': areSettingsDisplayed, 'disabled': areSettingsDisplayed === false }"
+            (click)="showOrHideSettings()"
+        >
+            <img
+                alt="Settings Icon"
+                src="../assets/static/settings-white-18dp.svg"
+                class="header-settings-icon"
+            >
+        </button>
+        <div
+            class="envelope"
+            [ngClass]="{ 'enabled': areSettingsDisplayed, 'disabled': areSettingsDisplayed === false }"
+        ></div>
+        <div
+            class="input-container"
+            [ngClass]="{ 'enabled': areSettingsDisplayed, 'disabled': areSettingsDisplayed === false }"
+        >
+            <p class="left-option">Dark</p>
+            <mat-slide-toggle
+                class="theme-slider"
+                (change)="changeTheme()"
+            >
+                Light
+            </mat-slide-toggle>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+@mixin themify($themes) {
+    @each $theme, $map in $themes {
+        .theme-#{$theme} & {
+            $theme-map: () !global;
+            @each $key, $submap in $map {
+                $value: map-get(map-get($themes, $theme), '#{$key}');
+                $theme-map: map-merge($theme-map, ($key: $value)) !global;
+            }
+
+            @content;
+            $theme-map: null !global;
+        }
+    }
+}
+
+@mixin applyStandardAnimation($animationName, $direction: normal, $additionalTime: 0ms) {
+    animation-name: $animationName;
+    animation-duration: 400ms + $additionalTime;
+    animation-timing-function: ease-in-out;
+    animation-direction: $direction;
+}
+
+@mixin applyColorTransitions() {
+    transition: background-color 400ms ease-in-out, color 400ms ease-in-out;
+}
