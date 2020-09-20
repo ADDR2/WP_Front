@@ -1,0 +1,22 @@
+<div class="home-container">
+    <div *ngIf="dataLoaded; then thenBlock else elseBlock"></div>
+
+    <ng-template #elseBlock>
+        <mat-spinner
+            class="app-loader"
+            mode="indeterminate"
+            diameter="50"
+        ></mat-spinner>
+    </ng-template>
+
+    <ng-template #thenBlock>
+        <div class="home-content">
+            <div class="sorters">
+            
+            </div>
+            <div class="items-displayer">
+                <app-thumbnail *ngFor="let item of items" [item]="item"></app-thumbnail>
+            </div>
+        </div>
+    </ng-template>
+</div>

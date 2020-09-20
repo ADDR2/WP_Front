@@ -5,7 +5,7 @@
 @import '../../styles/animations';
 
 
-:host-context::ng-deep  {
+:host-context::ng-deep {
     .header-container {
         display: flex;
         justify-content: space-between;

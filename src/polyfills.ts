@@ -22,6 +22,7 @@
  import 'core-js/features/object';
  import 'core-js/features/array';
  import 'core-js/features/string';
+ import 'core-js/features/map';
 
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
