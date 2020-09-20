@@ -1,0 +1,17 @@
+@import '../../styles/functions';
+@import '../../styles/themes';
+@import '../../styles/mixins';
+
+:host-context {
+    .search-icon {
+        position: absolute;
+        top: 9px;
+        left: 10px;
+        width: 24px;
+        height: 24px;
+
+        @include themify($themes) {
+            fill: themed('searchIconFillColor');
+        }
+    }
+}

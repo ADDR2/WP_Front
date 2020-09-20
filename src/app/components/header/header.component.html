@@ -1,9 +1,19 @@
 <div class="header-container">
     <div class="search-container">
-
+        <input
+            class="search-input"
+            (keyup)="searchBy($event)"
+            maxlength="80"
+            spellcheck="false"
+            autocomplete="false"
+        >
+        <app-search-icon-svg></app-search-icon-svg>
     </div>
 
-    <div class="settings-container">
+    <div
+        class="settings-container"
+        [ngClass]="{ 'enabled': areSettingsDisplayed, 'disabled': !areSettingsDisplayed }"
+    >
         <button
             aria-label="App Settings"
             class="header-settings-button"

@@ -7,6 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
   @Output() onThemeChange: EventEmitter<undefined> = new EventEmitter<undefined>();
+  @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
 
   areSettingsDisplayed: boolean = null;
 
@@ -16,5 +17,9 @@ export class HeaderComponent {
 
   changeTheme() {
     this.onThemeChange.emit();
+  }
+
+  searchBy({ target }: KeyboardEvent) {
+    this.onSearch.emit((target as HTMLInputElement).value);
   }
 }
