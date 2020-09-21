@@ -2,6 +2,7 @@
 @import '../../styles/functions';
 @import '../../styles/mixins';
 @import '../../styles/themes';
+@import '../../styles/medias';
 
 :host-context::ng-deep {
     .home-container {
@@ -34,9 +35,12 @@
         display: flex;
         flex-wrap: wrap;
         width: 100%;
+        justify-content: center;
 
-        & > *:nth-child(2n+1) {
+        & > * {
             margin-right: 10px;
         }
     }
+
+    @include addThumbnailListQueries;
 }
