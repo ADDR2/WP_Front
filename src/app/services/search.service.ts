@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { FilterObject } from '../models/filter.model';
 
 @Injectable()
 export class SearchService {
-    private searchSubject: Subject<string> = new Subject<string>();
+    private searchSubject: Subject<FilterObject> = new Subject<FilterObject>();
     $searchObserver = this.searchSubject.asObservable();
 
-    runSearch(text: string) {
-        this.searchSubject.next(text);
+    runSearch(filter: FilterObject) {
+        this.searchSubject.next(filter);
     }
 }

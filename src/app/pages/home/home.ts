@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
         private searchService: SearchService
     ) {
         this.searchService.$searchObserver.subscribe(
-            text => this.filter = { value: text, key: 'title' }
+            filter => this.filter = filter
         );
     }
 
