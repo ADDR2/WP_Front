@@ -4,6 +4,7 @@
 >
   <app-header
     (onThemeChange)="isDarkThemEnabled = !isDarkThemEnabled"
+    (onSearch)="searchService.runSearch($event)"
   ></app-header>
   <router-outlet></router-outlet>
 </div>

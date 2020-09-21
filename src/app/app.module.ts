@@ -12,6 +12,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchIconSVGComponent } from './components/search-icon-svg/search-icon-svg';
 
+// SERVICES
+import { SearchService } from './services/search.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,7 @@ import { SearchIconSVGComponent } from './components/search-icon-svg/search-icon
     MatSlideToggleModule,
     HomeModule
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

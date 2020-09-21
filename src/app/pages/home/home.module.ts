@@ -7,15 +7,18 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // COMPONENTS
 import { HomePage } from './home';
+import { ThumbnailComponent } from '../../components/thumbnail/thumbnail.component';
 
 // SERVICES
 import { HttpService } from '../../services/http.service';
-import { ThumbnailComponent } from '../../components/thumbnail/thumbnail.component';
+import { SearchService } from '../../services/search.service';
+import { FilterPipe } from '../../pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     HomePage,
-    ThumbnailComponent
+    ThumbnailComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,6 @@ import { ThumbnailComponent } from '../../components/thumbnail/thumbnail.compone
     BrowserAnimationsModule,
     MatProgressSpinnerModule
   ],
-  providers: [HttpService]
+  providers: [HttpService, SearchService]
 })
 export class HomeModule { }
