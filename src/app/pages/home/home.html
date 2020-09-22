@@ -15,7 +15,10 @@
             
             </div>
             <div class="items-displayer">
-                <app-thumbnail *ngFor="let item of (items | filterBy : filter)" [item]="item"></app-thumbnail>
+                <app-thumbnail
+                    *ngFor="let item of ((items | filterBy : filter) | sortBy : sort)"
+                    [item]="item"
+                ></app-thumbnail>
             </div>
         </div>
     </ng-template>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { SearchService } from './services/search.service';
+import { SortService } from './services/sort.service';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,12 @@ export class AppComponent {
   title = 'wallapop-test';
   isDarkThemEnabled = true;
 
-  constructor(public searchService: SearchService) {}
+  constructor(
+    public searchService: SearchService,
+    public sortService: SortService
+  ) {}
+
+  showFavorites() {
+    
+  }
 }

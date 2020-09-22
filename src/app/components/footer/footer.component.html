@@ -1,0 +1,56 @@
+<div class="footer-container">
+    <button
+        aria-label="Favorites Button"
+        class="favorites-button"
+        (click)="onFavoritesClick.emit()"
+    >
+        <img
+            alt="Favorites Icon"
+            src="../assets/static/round_favorite_white_18dp.png"
+            class="favorites-icon"
+        >
+    </button>
+
+    <div
+        class="sorts-container"
+        [ngClass]="{ 'enabled': areSortsDisplayed, 'disabled': !areSortsDisplayed }"
+    >
+        <button
+            aria-label="App Sorts"
+            class="footer-sorts-button"
+            [ngClass]="{ 'enabled': areSortsDisplayed, 'disabled': areSortsDisplayed === false }"
+            (click)="showOrHideSorts()"
+        >
+            <img
+                alt="Sorts Icon"
+                src="../assets/static/round_sort_white_18dp.png"
+                class="footer-sorts-icon"
+            >
+        </button>
+        <div
+            class="envelope"
+            [ngClass]="{ 'enabled': areSortsDisplayed, 'disabled': areSortsDisplayed === false }"
+        ></div>
+        <div
+            class="input-container"
+            [ngClass]="{ 'enabled': areSortsDisplayed, 'disabled': areSortsDisplayed === false }"
+        >
+            <button
+                *ngFor="let sort of sorts"
+                [aria-label]="sort + ' Sort'"
+                class="sort-button"
+                [ngClass]="{ 'active': currentSort.key === sort }"
+                (click)="toggleSort(sort)"
+            >
+                <app-sort-svg [key]="sort"></app-sort-svg>
+            </button>
+            <button
+                class="sort-direction-button"
+                [ngClass]="{ 'active': currentSort.direction !== 'none', 'flip': currentSort.direction === 'desc' }"
+                (click)="currentSort.key && toggleSortDirection()"
+            >
+                <app-sort-svg key="direction"></app-sort-svg>
+            </button>
+        </div>
+    </div>
+</div>

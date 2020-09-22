@@ -10,16 +10,21 @@ import { HomeModule } from './pages/home/home.module';
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SearchIconSVGComponent } from './components/search-icon-svg/search-icon-svg';
+import { SearchIconSVGComponent } from './components/search-icon-svg/search-icon-svg.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SortSVGComponent } from './components/sort-svg/sort-svg.component';
 
 // SERVICES
 import { SearchService } from './services/search.service';
+import { SortService } from './services/sort.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SearchIconSVGComponent
+    FooterComponent,
+    SearchIconSVGComponent,
+    SortSVGComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,7 @@ import { SearchService } from './services/search.service';
     MatSlideToggleModule,
     HomeModule
   ],
-  providers: [SearchService],
+  providers: [SearchService, SortService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

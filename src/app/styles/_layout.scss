@@ -5,6 +5,11 @@ $max-search-input-width: 820px;
 $settings-container-width: 120px + $settings-button-width;
 $settings-button-translation: $settings-button-width - $settings-container-width;
 
+// FOOTER
+$footer-height: 76px;
+$sorts-container-width: ($settings-button-width + 4px) * 6 - 4px;
+$sorts-button-translation: $sorts-container-width - $settings-button-width;
+
 // THUMBNAIL
 $thumbnail-height: 300px;
 $thumbnail-width: 145px;

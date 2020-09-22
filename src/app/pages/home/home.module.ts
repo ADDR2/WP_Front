@@ -12,12 +12,16 @@ import { ThumbnailComponent } from '../../components/thumbnail/thumbnail.compone
 // SERVICES
 import { HttpService } from '../../services/http.service';
 import { SearchService } from '../../services/search.service';
+
+// PIPES
 import { FilterPipe } from '../../pipes/filter.pipe';
+import { SortPipe } from 'src/app/pipes/sort.pipe';
 
 @NgModule({
   declarations: [
     HomePage,
     ThumbnailComponent,
+    SortPipe,
     FilterPipe
   ],
   imports: [

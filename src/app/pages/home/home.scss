@@ -7,7 +7,7 @@
 :host-context::ng-deep {
     .home-container {
         width: calc(100% - 20px);
-        height: calc(100vh - #{$header-height});
+        height: calc(100vh - (2* #{$header-height}));
         padding: 0 10px;
         overflow: auto;
         display: flex;
