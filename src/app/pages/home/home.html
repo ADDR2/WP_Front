@@ -1,0 +1,41 @@
+<div class="home-container">
+    <div *ngIf="dataLoaded; then displayData else loadingData"></div>
+
+    <ng-template #loadingData>
+        <mat-spinner
+            class="app-loader"
+            mode="indeterminate"
+            diameter="50"
+        ></mat-spinner>
+    </ng-template>
+
+    <ng-template #displayData>
+        <div
+            *ngIf="((items | filterBy : filter) | sortBy : sort); else noResults; let processedItemList"
+            class="home-content"
+        >
+            <div class="items-displayer">
+                <app-thumbnail
+                    *ngFor="let item of (processedItemList | paginate : paginator)"
+                    [item]="item"
+                ></app-thumbnail>
+            </div>
+            <mat-paginator
+                class="content-paginator"
+                [ngStyle]="{ 'display': paginator.paginationActive ? 'block' : 'none' }"
+                [hidePageSize]="true"
+                [showFirstLastButtons]="true"
+                [length]="processedItemList.length"
+                [pageSize]="pageSize"
+                [pageIndex]="paginator.page"
+                (page)="onPageChange($event)"
+            ></mat-paginator>
+        </div>
+
+        <ng-template #noResults>
+            <div class="empty-content">
+                <h3 class="empty-content-message">It appears there's nothing to be listed here :/</h3>
+            </div>
+        </ng-template>
+    </ng-template>
+</div>

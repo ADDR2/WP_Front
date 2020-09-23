@@ -1,0 +1,81 @@
+@import '../../styles/layout';
+@import '../../styles/functions';
+@import '../../styles/mixins';
+@import '../../styles/themes';
+@import '../../styles/medias';
+
+:host-context::ng-deep {
+    .home-container {
+        width: calc(100% - 20px);
+        height: calc(100vh - (2* #{$header-height}));
+        padding: 0 10px;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        @include themify($themes) {
+            background-color: themed('backgroundColor');
+        }
+    }
+
+    .app-loader svg circle{
+        @include themify($themes) {
+            stroke: themed('buttonsColor');
+        }
+    }
+
+    .home-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        & > .content-paginator {
+            display: none;
+            background-color: transparent;
+            margin: 1rem 0 0 0;
+
+            & .mat-paginator-container {
+                justify-content: center;
+            }
+
+            @include themify($themes) {
+                & .mat-paginator-range-actions {
+                    & > button {
+                        background-color: themed('buttonsColor');
+                        color: white;
+
+                        &:disabled {
+                            background-color: transparent;
+                            color: themed('buttonsColor');
+                        }
+                    }
+
+                    & > .mat-paginator-range-label {
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+
+    .items-displayer {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+
+        & > * {
+            margin-right: 10px;
+        }
+    }
+
+    .empty-content-message {
+        margin: 0;
+    }
+
+    @include addThumbnailListQueries;
+}

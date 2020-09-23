@@ -1,0 +1,33 @@
+@mixin addThumbnailListQueries {
+    @media screen and (min-width: 0px) and (max-width: 474px) {
+        .items-displayer > *:nth-child(2n) {
+            margin-right: 0;
+        }
+    }
+
+    @media screen and (min-width: 475px) and (max-width: 629px) {
+        .items-displayer > *:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
+
+    @media screen and (min-width: 630px) and (max-width: 785px) {
+        .items-displayer > *:nth-child(4n) {
+            margin-right: 0;
+        }
+    }
+
+    @media screen and (min-width: 786px) {
+        .items-displayer > *:nth-child(5n) {
+            margin-right: 0;
+        }
+    }
+}
+
+@mixin addFooterQueries {
+    @media screen and (max-width: 565px) {
+        .favorites-button {
+            margin-left: calc(100vw - #{$sorts-container-width} - 64px);
+        }
+    }
+}

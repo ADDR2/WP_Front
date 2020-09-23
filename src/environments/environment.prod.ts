@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  content: {
+    pageSize: 5,
+    removePaginationUnder: 786
+  }
 };

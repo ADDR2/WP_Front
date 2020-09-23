@@ -29,3 +29,33 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(-90deg); }
 }
+
+@keyframes expandFilters {
+    from {top: 42.5px; opacity: 1;}
+    to {top: -87.5px; opacity: 0;}
+}
+
+@keyframes collapseFilters {
+    from {top: -87.5px; opacity: 0;}
+    to {top: 42.5px; opacity: 1;}
+}
+
+@keyframes moveSortsButton {
+    from { transform: translateX(#{$sorts-button-translation}); }
+    to { transform: translateX(0px); }
+}
+
+@keyframes moveSortsButtonBack {
+    from { transform: translateX(0px); }
+    to { transform: translateX(#{$sorts-button-translation}); }
+}
+
+@keyframes moveSortsEnvelope {
+    from { transform: translateX($sorts-container-width); }
+    to { transform: translateX(0px); }
+}
+
+@keyframes moveSortsEnvelopeBack {
+    from { transform: translateX(0px); }
+    to { transform: translateX($sorts-container-width); }
+}

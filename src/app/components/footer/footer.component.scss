@@ -1,0 +1,164 @@
+@import '../../styles/layout';
+@import '../../styles/functions';
+@import '../../styles/mixins';
+@import '../../styles/themes';
+@import '../../styles/animations';
+@import '../../styles/medias';
+
+
+:host-context::ng-deep {
+    .footer-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: $footer-height;
+        width: auto;
+        padding: 0 10px;
+        min-width: 300px;
+        
+        @include themify($themes) {
+            background-color: themed('backgroundColor');
+        }
+    }
+
+    .sorts-container {
+        position: relative;
+        height: $input-button-height;
+        min-width: $sorts-container-width;
+        width: $sorts-container-width;
+        overflow: hidden;
+        background-color: inherit;
+        transition: none;
+    }
+
+    %button-placeholder {
+        outline: none;
+        border: none;
+        width: $settings-button-width;
+        height: $input-button-height;
+        cursor: pointer;
+        padding: 8px 0;
+        text-align: center;
+        border-radius: 50%;
+
+        @include themify($themes) {
+            background-color: themed('buttonsColor');
+
+            &:hover {
+                background-color: themed('hoveredButtonsColor');
+            }
+
+            &:active {
+                background-color: themed('focusedButtonsColor');
+            }
+        }
+    }
+
+    .favorites-button {
+        margin: 0 4px 0 ($sorts-container-width - 45px);
+        @extend %button-placeholder;
+    }
+
+    .sort-button, .sort-direction-button {
+        margin: 0 4px 0 0;
+        outline: none;
+        border: none;
+        width: $settings-button-width;
+        height: $input-button-height;
+        cursor: pointer;
+        padding: 8px 0;
+        text-align: center;
+        border-radius: 50%;
+        background-color: transparent;
+        transition: background-color 400ms ease-in-out, color 400ms ease-in-out, transform 400ms ease-in-out;
+
+        & .sort-svg {
+            @include themify($themes) {
+                fill: themed('buttonsColor');
+            }
+        }
+
+        &.active {
+            @include themify($themes) {
+                background-color: themed('buttonsColor');
+    
+                &:hover {
+                    background-color: themed('hoveredButtonsColor');
+                }
+    
+                &:active {
+                    background-color: themed('focusedButtonsColor');
+                }
+
+                & .sort-svg {
+                    fill: white;
+                }
+            }
+        }
+
+        &.active.flip {
+            transform: rotate(180deg);
+        }
+    }
+
+    .footer-sorts-button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        @extend %button-placeholder;
+        
+        &.disabled {
+            @include applyStandardAnimation(moveSortsButtonBack, reverse);
+        }
+        
+        &.enabled {
+            transform: translateX(#{$sorts-button-translation});
+            @include applyStandardAnimation(moveSortsButton, reverse);
+        }
+    }
+
+    .footer-sorts-icon, .favorites-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .envelope {
+        position: absolute;
+        width: $sorts-container-width;
+        height: calc(#{$input-button-height} + 2px);
+        top: -1px;
+        left: 1px;
+        background-color: inherit;
+        border-radius: 30px;
+        border: none;
+        z-index: 2;
+        
+        &.disabled {
+            @include applyStandardAnimation(moveSortsEnvelopeBack, reverse, 50ms);
+        }
+
+        &.enabled {
+            transform: translateX(-$sorts-container-width);
+            @include applyStandardAnimation(moveSortsEnvelope, reverse, 50ms);
+        }
+    }
+
+    .input-container {
+        position: absolute;
+        width: $sorts-container-width;
+        height: $input-button-height;
+        z-index: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 30px;
+        border: none;
+
+        @include themify($themes) {
+            background-color: themed('inputContainerBackgrounColor');
+        }
+    }
+
+    @include addFooterQueries;
+}

@@ -9,6 +9,9 @@ $themes: (
     inputContentColor: darken(white, 15%),
     searchIconFillColor: darken(white, 40%),
     searchIconFocusFillColor: #13C1AC,
+    thumbnailBackgroundColor: darken(white, 15%),
+    thumbnailShadowColor: darken(white, 40%),
+    secondaryTextColor: lighten(black, 30%),
   ),
   dark: (
     backgroundColor: darken(white, 40%),
@@ -20,5 +23,8 @@ $themes: (
     inputContentColor: darken(white, 25%),
     searchIconFillColor: darken(white, 5%),
     searchIconFocusFillColor: darken(#13C1AC, 20%),
+    thumbnailBackgroundColor: darken(white, 25%),
+    thumbnailShadowColor: darken(white, 10%),
+    secondaryTextColor: lighten(black, 30%),
   ),
 );
