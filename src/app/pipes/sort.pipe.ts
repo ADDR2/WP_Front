@@ -6,6 +6,7 @@ import { Item } from '../models/item.model';
 @Pipe({ name: 'sortBy' })
 export class SortPipe implements PipeTransform {
     transform(items: Item[], sort: SortObject): Item[] {
+        if (!items.length) return null;
         if (!sort || sort.direction === 'none') return [ ...items ];
 
         return [ ...items ].sort(
