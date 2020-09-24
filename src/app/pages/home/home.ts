@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 
 import { SortObject } from '../../models/sort.model';
 import { FilterObject } from '../../models/filter.model';
@@ -8,6 +9,7 @@ import { HttpService } from '../../services/http.service';
 import { MessageService } from '../../services/message.service';
 import { environment } from '../../../environments/environment';
 import { Paginator } from '../../models/paginator.model';
+import { FavouritesDialogComponent } from '../../components/favourites-dialog/favourites-dialog.component';
 
 @Component({
   selector: 'app-home-page',
@@ -17,6 +19,7 @@ import { Paginator } from '../../models/paginator.model';
 export class HomePage implements OnInit {
     dataLoaded = false;
     items: Item[] = [];
+    favourites: Item[] = [];
     filter: FilterObject = null;
     sort: SortObject = null;
     paginator: Paginator = {
@@ -29,6 +32,7 @@ export class HomePage implements OnInit {
     constructor(
         private httpService: HttpService,
         private messageService: MessageService,
+        private dialog: MatDialog
     ) {
         this.messageService.$searchObserver.subscribe(
             filter => {
@@ -42,6 +46,25 @@ export class HomePage implements OnInit {
 
         this.messageService.$sortObserver.subscribe(
             sort => this.sort = sort
+        );
+
+        this.messageService.$favouritesObserver.subscribe(
+            () => {
+                const dialogRef = this.dialog.open(FavouritesDialogComponent, {
+                    height: '70vh',
+                    width: '600px',
+                    panelClass: 'favourites-dialog',
+                    disableClose: true,
+                    data: this.items.filter(({ isFavourite }) => isFavourite)
+                    .map(({ title, image, isFavourite }) => ({ title, image, isFavourite }))
+                });
+
+                dialogRef.afterClosed().subscribe((removedItems: string[]) => {
+                    for (const item of this.items) {
+                        item.isFavourite = removedItems.includes(item.title) ? false : item.isFavourite;
+                    }
+                });
+            }
         );
     }
 

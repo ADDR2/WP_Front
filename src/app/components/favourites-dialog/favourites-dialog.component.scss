@@ -1,0 +1,86 @@
+@import '../../styles/layout';
+@import '../../styles/functions';
+@import '../../styles/mixins';
+@import '../../styles/themes';
+
+:host-context::ng-deep {
+    color: black;
+
+    .favourites-dialog-grid {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    
+        @include themify($themes) {
+            background-color: themed('backgroundColor');
+        }
+    }
+
+    .dialog-header {
+        width: calc(100% - (2* #{$dialog-padding}));
+        height: $dialog-header-height;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 $dialog-padding;
+    }
+
+    .favourites-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 $dialog-padding;
+        width: calc(100% - (2 * #{$dialog-padding}));
+        height: calc(100% - #{$dialog-header-height});
+        overflow-y: auto;
+    }
+
+    .items-displayer {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+        padding: 0 0 20px 0;
+
+        & > * {
+            margin-right: 10px;
+        }
+    }
+
+    .empty-content {
+        @extend .favourites-content;
+        justify-content: center;
+    }
+
+    .empty-content-message {
+        margin: 0;
+    }
+
+    .dialog-close-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .dialog-close-button {
+        outline: none;
+        border: none;
+        width: $settings-button-width;
+        height: $input-button-height;
+        cursor: pointer;
+        padding: 8px 0;
+        text-align: center;
+        border-radius: 50%;
+    
+        @include themify($themes) {
+            background-color: themed('buttonsColor');
+    
+            &:hover {
+                background-color: themed('hoveredButtonsColor');
+            }
+    
+            &:active {
+                background-color: themed('focusedButtonsColor');
+            }
+        }
+    }
+}

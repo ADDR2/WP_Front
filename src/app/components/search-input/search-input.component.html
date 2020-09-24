@@ -11,6 +11,7 @@
     <button
         aria-label="App Filters"
         class="current-filter"
+        [ngStyle]="{ 'cursor': filters.length ? 'pointer' : 'default' }"
         (click)="filters.length && expandOrCollapseFilters()"
     >
         <img

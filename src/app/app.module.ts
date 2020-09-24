@@ -6,14 +6,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 // MODULES
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './pages/home/home.module';
+import { SharedComponentsModule } from './shared/shared-components.module';
+
 
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SearchIconSVGComponent } from './components/search-icon-svg/search-icon-svg.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SortSVGComponent } from './components/sort-svg/sort-svg.component';
-import { SearchInputComponent } from './components/search-input/search-input.component';
 
 // SERVICES
 import { MessageService } from './services/message.service';
@@ -23,8 +23,6 @@ import { MessageService } from './services/message.service';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SearchInputComponent,
-    SearchIconSVGComponent,
     SortSVGComponent
   ],
   imports: [
@@ -32,6 +30,7 @@ import { MessageService } from './services/message.service';
     AppRoutingModule,
     NoopAnimationsModule,
     MatSlideToggleModule,
+    SharedComponentsModule,
     HomeModule
   ],
   providers: [ MessageService ],
