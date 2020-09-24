@@ -21,7 +21,7 @@ export class FavouritesDialogComponent implements OnInit {
         filters: [
           'title'
         ]
-    }
+    };
 
     constructor(
         public dialogRef: MatDialogRef<FavouritesDialogComponent>,
@@ -30,23 +30,23 @@ export class FavouritesDialogComponent implements OnInit {
         this.items = [ ...data ];
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         const appContainer = document.querySelector('.app-container') as HTMLDivElement;
         const currentThemeClass = appContainer.classList.toString().replace('app-container ', '');
 
         (document.querySelector('mat-dialog-container') as HTMLDivElement).classList.add(currentThemeClass);
     }
 
-    removeFavourite(item: Partial<Item>) {
+    removeFavourite(item: Partial<Item>): void {
         this.removedItems.push(item.title);
         this.items = this.items.filter(({ title }) => title !== item.title);
     }
 
-    onSearch(filter: FilterObject) {
+    onSearch(filter: FilterObject): void {
         this.filter = filter;
     }
 
-    closeDialog() {
+    closeDialog(): void {
         this.dialogRef.close(this.removedItems);
     }
 }

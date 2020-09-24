@@ -3,14 +3,14 @@
   [ngClass]="{ 'theme-dark': isDarkThemEnabled, 'theme-light': !isDarkThemEnabled }"
 >
   <app-header
-    (onThemeChange)="isDarkThemEnabled = !isDarkThemEnabled"
-    (onSearch)="messageService.runSearch($event)"
+    (themeChange)="isDarkThemEnabled = !isDarkThemEnabled"
+    (search)="messageService.runSearch($event)"
   ></app-header>
 
   <router-outlet></router-outlet>
 
   <app-footer
-    (onFavoritesClick)="messageService.openFavourites()"
-    (onSort)="messageService.runSort($event)"
+    (favoritesClick)="messageService.openFavourites()"
+    (sort)="messageService.runSort($event)"
   ></app-footer>
 </div>

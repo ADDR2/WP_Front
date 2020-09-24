@@ -10,10 +10,10 @@ import { Item } from '../../models/item.model';
 export class ThumbnailComponent {
   @Input() item: Partial<Item>;
   @Input() styles: Partial<CSSStyleDeclaration> = {};
-  @Output() onSelectFavourite: EventEmitter<Partial<Item>> = new EventEmitter<Partial<Item>>();
+  @Output() selectFavourite: EventEmitter<Partial<Item>> = new EventEmitter<Partial<Item>>();
 
-  onSelect() {
-    this.item.isFavourite = !this.item.isFavourite
-    this.onSelectFavourite.emit(this.item);
+  onSelect(): void {
+    this.item.isFavourite = !this.item.isFavourite;
+    this.selectFavourite.emit(this.item);
   }
 }

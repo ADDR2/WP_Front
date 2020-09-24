@@ -8,8 +8,8 @@ import { FilterObject } from '../../models/filter.model';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @Output() onThemeChange: EventEmitter<undefined> = new EventEmitter<undefined>();
-  @Output() onSearch: EventEmitter<FilterObject> = new EventEmitter<FilterObject>();
+  @Output() themeChange: EventEmitter<undefined> = new EventEmitter<undefined>();
+  @Output() search: EventEmitter<FilterObject> = new EventEmitter<FilterObject>();
 
   areSettingsDisplayed: boolean = null;
   filterIconList: FilterIconList = {
@@ -25,13 +25,13 @@ export class HeaderComponent {
       'email',
       'description'
     ]
-  }
+  };
 
-  showOrHideSettings() {
+  showOrHideSettings(): void {
     this.areSettingsDisplayed = !this.areSettingsDisplayed;
   }
 
-  changeTheme() {
-    this.onThemeChange.emit();
+  changeTheme(): void {
+    this.themeChange.emit();
   }
 }

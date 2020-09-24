@@ -16,7 +16,7 @@ import { FavouritesDialogComponent } from '../../components/favourites-dialog/fa
   templateUrl: './home.html',
   styleUrls: ['./home.scss']
 })
-export class HomePage implements OnInit {
+export class HomePageComponent implements OnInit {
     dataLoaded = false;
     items: Item[] = [];
     favourites: Item[] = [];
@@ -68,17 +68,17 @@ export class HomePage implements OnInit {
         );
     }
 
-    async ngOnInit() {
+    async ngOnInit(): Promise<void> {
         try {
             this.paginator.paginationActive = window.innerWidth >= this.removePaginationUnder;
             this.items = await this.httpService.getItems();
             this.dataLoaded = true;
-        } catch(error) {
+        } catch (error) {
             console.warn(error);
         }
     }
 
-    onPageChange(event: PageEvent) {
+    onPageChange(event: PageEvent): void {
         this.paginator = {
             page: event.pageIndex,
             paginationActive: window.innerWidth >= this.removePaginationUnder
@@ -86,7 +86,7 @@ export class HomePage implements OnInit {
     }
 
     @HostListener('window:resize', ['$event'])
-    onResize() {
+    onResize(): void {
         const shouldBeActive = window.innerWidth >= this.removePaginationUnder;
 
         this.paginator = {

@@ -6,8 +6,12 @@ import { Item } from '../models/item.model';
 @Pipe({ name: 'filterBy' })
 export class FilterPipe implements PipeTransform {
     transform(items: Item[], filter: FilterObject): Item[] {
-        if (!items || !items.length) return null;
-        if (!filter) return items;
+        if (!items || !items.length) {
+            return null;
+        }
+        if (!filter) {
+            return items;
+        }
 
         const result = items.filter(
             item => {
