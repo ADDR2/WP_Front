@@ -75,6 +75,8 @@ export class HomePageComponent implements OnInit {
             this.dataLoaded = true;
         } catch (error) {
             console.warn(error);
+            this.items = [];
+            this.dataLoaded = true;
         }
     }
 
