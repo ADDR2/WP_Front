@@ -1,0 +1,41 @@
+<input
+    class="search-input"
+    (keyup)="onChange($event)"
+    maxlength="80"
+    spellcheck="false"
+    autocomplete="false"
+    [placeholder]="placeholder"
+>
+<app-search-icon-svg></app-search-icon-svg>
+<div class="filters-container">
+    <button
+        aria-label="App Filters"
+        class="current-filter"
+        [ngStyle]="{ 'cursor': filters.length ? 'pointer' : 'default' }"
+        (click)="filters.length && expandOrCollapseFilters()"
+    >
+        <img
+            alt="Current Filter Icon"
+            [src]="pathByName[currentFilter]"
+            class="filter-icon"
+        >
+    </button>
+    <div
+        *ngIf="filters.length"
+        class="filter-list"
+        [ngClass]="{ 'expanded': areFiltersDisplayed, 'collapsed': areFiltersDisplayed === false }"
+    >
+        <button
+            *ngFor="let filter of filters"
+            [aria-label]="filter"
+            class="filter-inside-list"
+            (click)="onSelectFilter(filter)"
+        >
+            <img
+                [alt]="filter + ' icon'"
+                [src]="pathByName[filter]"
+                class="filter-icon"
+            >
+        </button>
+    </div>
+</div>

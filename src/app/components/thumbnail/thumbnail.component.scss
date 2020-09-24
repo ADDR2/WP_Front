@@ -94,4 +94,18 @@
             color: themed('secondaryTextColor');
         }
     }
+
+    .thumbnail-checkbox {
+        @include themify($themes) {
+            &.thumbnail-selected .favourite-icon-svg path:nth-child(2) {
+                fill: themed('buttonsColor');
+            }
+    
+            & .favourite-icon-svg path:nth-child(2) {
+                stroke: themed('buttonsColor');
+                fill: transparent;
+                transition: fill 400ms ease-in-out;
+            }
+        }
+    }
 }

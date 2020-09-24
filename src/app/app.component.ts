@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SearchService } from './services/search.service';
-import { SortService } from './services/sort.service';
+import { MessageService } from './services/message.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +11,5 @@ export class AppComponent {
   title = 'wallapop-test';
   isDarkThemEnabled = true;
 
-  constructor(
-    public searchService: SearchService,
-    public sortService: SortService
-  ) {}
-
-  showFavorites() {
-    
-  }
+  constructor(public messageService: MessageService) {}
 }

@@ -1,0 +1,39 @@
+<div class="favourites-dialog-grid">
+    <div class="dialog-header">
+        <app-search-input
+            [filterIconList]="filterIconList"
+            (onSearch)="onSearch($event)"
+        ></app-search-input>
+
+        <button
+            class="dialog-close-button"
+            (click)="closeDialog()"
+        >
+            <img
+                alt="Close Icon"
+                src="./assets/static/round_clear_white_18dp.png"
+                class="dialog-close-icon"
+            >
+        </button>
+    </div>
+
+    <div
+        *ngIf="(items | filterBy : filter); else noResults; let processedItemList"
+        class="favourites-content"
+    >
+        <div class="items-displayer">
+            <app-thumbnail
+                *ngFor="let item of processedItemList"
+                [item]="item"
+                [styles]="{ 'height': '210px' }"
+                (onSelectFavourite)="removeFavourite($event)"
+            ></app-thumbnail>
+        </div>
+    </div>
+
+    <ng-template #noResults>
+        <div class="empty-content">
+            <h3 class="empty-content-message">It appears there's nothing to be listed here :/</h3>
+        </div>
+    </ng-template>
+</div>

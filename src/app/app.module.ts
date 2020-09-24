@@ -6,24 +6,23 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 // MODULES
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './pages/home/home.module';
+import { SharedComponentsModule } from './shared/shared-components.module';
+
 
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SearchIconSVGComponent } from './components/search-icon-svg/search-icon-svg.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SortSVGComponent } from './components/sort-svg/sort-svg.component';
 
 // SERVICES
-import { SearchService } from './services/search.service';
-import { SortService } from './services/sort.service';
+import { MessageService } from './services/message.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SearchIconSVGComponent,
     SortSVGComponent
   ],
   imports: [
@@ -31,9 +30,10 @@ import { SortService } from './services/sort.service';
     AppRoutingModule,
     NoopAnimationsModule,
     MatSlideToggleModule,
+    SharedComponentsModule,
     HomeModule
   ],
-  providers: [SearchService, SortService],
-  bootstrap: [AppComponent]
+  providers: [ MessageService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -1,13 +1,21 @@
-<div class="thumbnail-container">
+<div
+    class="thumbnail-container"
+    [ngStyle]="styles"
+>
     <img
         [alt]="item.title"
         [src]="item.image"
         class="thumbnail-image"
     >
     <div class="thumbnail-info">
-        <h2 class="thumbnail-price">{{ item.price }} €</h2>
-        <p class="thumbnail-title">{{ item.title }}</p>
-        <p class="thumbnail-description">{{ item.description }}</p>
-        <p class="thumbnail-email">{{ item.email }}</p>
+        <h2 *ngIf="item.price" class="thumbnail-price">{{ item.price }} €</h2>
+        <p *ngIf="item.title" class="thumbnail-title">{{ item.title }}</p>
+        <p *ngIf="item.description" class="thumbnail-description">{{ item.description }}</p>
+        <p *ngIf="item.email" class="thumbnail-email">{{ item.email }}</p>
+        <app-favourite-icon-svg
+            class="thumbnail-checkbox"
+            [ngClass]="{ 'thumbnail-selected': item.isFavourite }"
+            (click)="onSelect()"
+        ></app-favourite-icon-svg>
     </div>
 </div>
