@@ -2,7 +2,7 @@
     <div class="dialog-header">
         <app-search-input
             [filterIconList]="filterIconList"
-            (onSearch)="onSearch($event)"
+            (search)="onSearch($event)"
         ></app-search-input>
 
         <button
@@ -26,7 +26,7 @@
                 *ngFor="let item of processedItemList"
                 [item]="item"
                 [styles]="{ 'height': '210px' }"
-                (onSelectFavourite)="removeFavourite($event)"
+                (selectFavourite)="removeFavourite($event)"
             ></app-thumbnail>
         </div>
     </div>

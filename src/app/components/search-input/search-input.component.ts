@@ -8,10 +8,10 @@ import { FilterIconList } from '../../models/filter-icon-list.model';
   styleUrls: ['./search-input.component.scss']
 })
 export class SearchInputComponent implements OnInit {
-    @Input() placeholder: string = 'Search';
+    @Input() placeholder = 'Search';
     @Input() filterIconList: FilterIconList;
 
-    @Output() onSearch: EventEmitter<FilterObject> = new EventEmitter<FilterObject>();
+    @Output() search: EventEmitter<FilterObject> = new EventEmitter<FilterObject>();
 
     areFiltersDisplayed: boolean = null;
     currentFilter = '';
@@ -19,7 +19,7 @@ export class SearchInputComponent implements OnInit {
     filters: string[] = [];
     lastSearch = '';
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.filters = this.filterIconList.filters;
         this.pathByName = this.filterIconList.pathByName;
 
@@ -29,30 +29,30 @@ export class SearchInputComponent implements OnInit {
         }
     }
 
-    onChange({ target }: KeyboardEvent) {
+    onChange({ target }: KeyboardEvent): void {
         this.lastSearch = (target as HTMLInputElement).value;
 
-        this.onSearch.emit({
+        this.search.emit({
             value: this.lastSearch,
             key: this.currentFilter
         });
     }
 
-    expandOrCollapseFilters() {
+    expandOrCollapseFilters(): void {
         this.areFiltersDisplayed = !this.areFiltersDisplayed;
     }
 
-    onSelectFilter(filter: string) {
+    onSelectFilter(filter: string): void {
         this.filters.splice(
             this.filters.indexOf(filter),
             1,
             this.currentFilter
         );
         this.currentFilter = filter;
-    
+
         this.expandOrCollapseFilters();
-    
-        this.onSearch.emit({
+
+        this.search.emit({
             value: this.lastSearch,
             key: this.currentFilter
         });

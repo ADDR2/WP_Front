@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomePage } from './pages/home/home';
+import { HomePageComponent } from './pages/home/home';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomePage
+    component: HomePageComponent
   }
 ];
 

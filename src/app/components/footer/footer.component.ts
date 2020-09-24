@@ -7,8 +7,8 @@ import { SortObject } from '../../models/sort.model';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-  @Output() onFavoritesClick: EventEmitter<undefined> = new EventEmitter<undefined>();
-  @Output() onSort: EventEmitter<SortObject> = new EventEmitter<SortObject>();
+  @Output() favoritesClick: EventEmitter<undefined> = new EventEmitter<undefined>();
+  @Output() sort: EventEmitter<SortObject> = new EventEmitter<SortObject>();
 
   areSortsDisplayed: boolean = null;
   currentSort: SortObject = { key: '', direction: 'none' };
@@ -18,27 +18,29 @@ export class FooterComponent {
     'price',
     'email',
     'description'
-  ]
+  ];
 
-  showOrHideSorts() {
+  showOrHideSorts(): void {
     this.areSortsDisplayed = !this.areSortsDisplayed;
   }
 
-  toggleSort(sort: string) {
+  toggleSort(sort: string): void {
     this.currentSort = {
       key: sort,
       direction: 'asc'
     };
 
-    this.onSort.emit({ ...this.currentSort });
+    this.sort.emit({ ...this.currentSort });
   }
 
-  toggleSortDirection() {
+  toggleSortDirection(): void {
     this.currentSort.direction = this.directions[
       (this.directions.indexOf(this.currentSort.direction) + 1) % 3
     ];
 
-    if (this.currentSort.direction === 'none') this.currentSort.key = '';
-    this.onSort.emit({ ...this.currentSort });
+    if (this.currentSort.direction === 'none') {
+      this.currentSort.key = '';
+    }
+    this.sort.emit({ ...this.currentSort });
   }
 }

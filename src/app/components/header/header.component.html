@@ -1,7 +1,7 @@
 <div class="header-container">
     <app-search-input
         [filterIconList]="filterIconList"
-        (onSearch)="onSearch.emit($event)"
+        (search)="search.emit($event)"
     ></app-search-input>
 
     <div

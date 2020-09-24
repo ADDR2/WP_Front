@@ -9,20 +9,20 @@ export class MessageService {
     private favouritesSubject: Subject<undefined> = new Subject<undefined>();
     private searchSubject: Subject<FilterObject> = new Subject<FilterObject>();
     private sortSubject: Subject<SortObject> = new Subject<SortObject>();
-    
+
     $sortObserver = this.sortSubject.asObservable();
     $favouritesObserver = this.favouritesSubject.asObservable();
     $searchObserver = this.searchSubject.asObservable();
 
-    runSearch(filter: FilterObject) {
+    runSearch(filter: FilterObject): void {
         this.searchSubject.next(filter);
     }
 
-    runSort(sort: SortObject) {
+    runSort(sort: SortObject): void {
         this.sortSubject.next(sort);
     }
 
-    openFavourites() {
+    openFavourites(): void {
         this.favouritesSubject.next();
     }
 }

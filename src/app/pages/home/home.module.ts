@@ -11,7 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SharedComponentsModule } from '../../shared/shared-components.module';
 
 // COMPONENTS
-import { HomePage } from './home';
+import { HomePageComponent } from './home';
 import { ThumbnailComponent } from '../../components/thumbnail/thumbnail.component';
 import { FavouritesDialogComponent } from '../../components/favourites-dialog/favourites-dialog.component';
 import { FavouriteIconSVGComponent } from '../../components/favourite-svg/favourite-svg.component';
@@ -27,7 +27,7 @@ import { PaginatorPipe } from '../../pipes/paginator.pipe';
 
 @NgModule({
   declarations: [
-    HomePage,
+    HomePageComponent,
     ThumbnailComponent,
     SortPipe,
     FilterPipe,
