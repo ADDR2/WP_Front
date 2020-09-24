@@ -16,8 +16,7 @@ import { SortSVGComponent } from './components/sort-svg/sort-svg.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 
 // SERVICES
-import { SearchService } from './services/search.service';
-import { SortService } from './services/sort.service';
+import { MessageService } from './services/message.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,7 @@ import { SortService } from './services/sort.service';
     MatSlideToggleModule,
     HomeModule
   ],
-  providers: [SearchService, SortService],
-  bootstrap: [AppComponent]
+  providers: [ MessageService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

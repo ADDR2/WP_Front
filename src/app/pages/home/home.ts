@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 import { SortObject } from '../../models/sort.model';
 import { FilterObject } from '../../models/filter.model';
 import { Item } from '../../models/item.model';
 import { HttpService } from '../../services/http.service';
-import { SearchService } from '../../services/search.service';
-import { SortService } from '../../services/sort.service';
+import { MessageService } from '../../services/message.service';
 import { environment } from '../../../environments/environment';
 import { Paginator } from '../../models/paginator.model';
-import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home-page',
@@ -30,10 +28,9 @@ export class HomePage implements OnInit {
 
     constructor(
         private httpService: HttpService,
-        private searchService: SearchService,
-        private sortService: SortService
+        private messageService: MessageService,
     ) {
-        this.searchService.$searchObserver.subscribe(
+        this.messageService.$searchObserver.subscribe(
             filter => {
                 this.paginator = {
                     page: 0,
@@ -43,7 +40,7 @@ export class HomePage implements OnInit {
             }
         );
 
-        this.sortService.$sortObserver.subscribe(
+        this.messageService.$sortObserver.subscribe(
             sort => this.sort = sort
         );
     }

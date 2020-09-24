@@ -5,14 +5,16 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // COMPONENTS
 import { HomePage } from './home';
 import { ThumbnailComponent } from '../../components/thumbnail/thumbnail.component';
+import { FavouritesDialogComponent } from '../../components/favourites-dialog/favourites-dialog.component';
 
 // SERVICES
 import { HttpService } from '../../services/http.service';
-import { SearchService } from '../../services/search.service';
+import { MessageService } from '../../services/message.service';
 
 // PIPES
 import { FilterPipe } from '../../pipes/filter.pipe';
@@ -25,8 +27,10 @@ import { PaginatorPipe } from '../../pipes/paginator.pipe';
     ThumbnailComponent,
     SortPipe,
     FilterPipe,
-    PaginatorPipe
+    PaginatorPipe,
+    FavouritesDialogComponent
   ],
+  entryComponents: [ FavouritesDialogComponent ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -34,8 +38,9 @@ import { PaginatorPipe } from '../../pipes/paginator.pipe';
     NoopAnimationsModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
-  providers: [HttpService, SearchService]
+  providers: [ HttpService, MessageService ]
 })
 export class HomeModule { }

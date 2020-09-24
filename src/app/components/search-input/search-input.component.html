@@ -11,7 +11,7 @@
     <button
         aria-label="App Filters"
         class="current-filter"
-        (click)="expandOrCollapseFilters()"
+        (click)="filters.length && expandOrCollapseFilters()"
     >
         <img
             alt="Current Filter Icon"
@@ -20,6 +20,7 @@
         >
     </button>
     <div
+        *ngIf="filters.length"
         class="filter-list"
         [ngClass]="{ 'expanded': areFiltersDisplayed, 'collapsed': areFiltersDisplayed === false }"
     >

@@ -16,7 +16,7 @@ export class SearchInputComponent implements OnInit {
     areFiltersDisplayed: boolean = null;
     currentFilter = '';
     pathByName: { [key: string]: string } = {};
-    filters: string[] = []
+    filters: string[] = [];
     lastSearch = '';
 
     ngOnInit() {
