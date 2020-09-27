@@ -7,13 +7,13 @@ function responseData(data: string): Observable<ItemListResponse> {
     return defer(() => Promise.resolve(JSON.parse(data)));
 }
 
-function responseError(errorObject: Error) {
+function responseError(errorObject: Error): Observable<Error> {
     return defer(() => Promise.reject(errorObject));
 }
 
 describe('Http Service', () => {
     let service: HttpService;
-    let httpClientSpy: { get: jasmine.Spy } = jasmine.createSpyObj('HttpClient', ['get']);
+    const httpClientSpy: { get: jasmine.Spy } = jasmine.createSpyObj('HttpClient', ['get']);
 
     beforeEach(() => {
         service = new HttpService(httpClientSpy as any);
@@ -55,7 +55,7 @@ describe('Http Service', () => {
         try {
             await service.getItems();
             expect(1).toEqual(2);
-        } catch(error) {
+        } catch (error) {
             expect(httpClientSpy.get.calls.count()).toBe(1);
             expect(error).toBeInstanceOf(Error);
             expect(error.message).toEqual(errorMessage);

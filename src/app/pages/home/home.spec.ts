@@ -20,92 +20,92 @@ const httpObject: { get: () => Observable<any> } = {
 };
 
 class MockHttpService {
-	baseUrl = 'https://testing.com/component';
-	http = httpObject;
-	
-	getItems(): Promise<Item[]> {
-		return httpObject.get().toPromise().then(({ items }) => items);
-	}
+    baseUrl = 'https://testing.com/component';
+    http = httpObject;
+
+    getItems(): Promise<Item[]> {
+        return httpObject.get().toPromise().then(({ items }) => items);
+    }
 }
 
 class MockMatDialog {
-	open() {
-		return {
-		  	afterClosed: () => of({})
-		};
-	}
+    open(): { afterClosed: () => Observable<{}> } {
+        return {
+            afterClosed: () => of({})
+        };
+    }
 }
 
 describe('Home Page', () => {
-	let component: HomePageComponent;
-	let httpService: HttpService;
-	let messageService: MessageService;
+    let component: HomePageComponent;
+    let httpService: HttpService;
+    let messageService: MessageService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-			providers: [
-				HomePageComponent,
-				{ provide: MatDialog, useClass: MockMatDialog },
-				{ provide: HttpService, useClass: MockHttpService },
-				{ provide: MessageService, useClass: MessageService }
-			]
+            providers: [
+                HomePageComponent,
+                { provide: MatDialog, useClass: MockMatDialog },
+                { provide: HttpService, useClass: MockHttpService },
+                { provide: MessageService, useClass: MessageService }
+            ]
         });
 
-		TestBed.inject(MatDialog);
+        TestBed.inject(MatDialog);
         component = TestBed.inject(HomePageComponent);
-		httpService = TestBed.inject(HttpService);
-		messageService = TestBed.inject(MessageService);
-	});
-	
-	it('should listen to sort changes after being instantiated', async () => {
-		const newSort: SortObject = { key: 'title', direction: 'desc' };
+        httpService = TestBed.inject(HttpService);
+        messageService = TestBed.inject(MessageService);
+    });
 
-		expect(component.sort).toBeNull();
-		const promise = new Promise(resolve => {
-			messageService.$sortObserver.subscribe(resolve);
-		});
+    it('should listen to sort changes after being instantiated', async () => {
+        const newSort: SortObject = { key: 'title', direction: 'desc' };
 
-		messageService.runSort(newSort);
-		const sort = await promise;
+        expect(component.sort).toBeNull();
+        const promise = new Promise(resolve => {
+            messageService.$sortObserver.subscribe(resolve);
+        });
 
-		expect(sort).toEqual(newSort);
-		expect(component.sort).toEqual(newSort);
-	});
+        messageService.runSort(newSort);
+        const sort = await promise;
 
-	it('should listen to filter changes after being instantiated', async () => {
-		const newFilter: FilterObject = { key: 'title', value: 'something' };
+        expect(sort).toEqual(newSort);
+        expect(component.sort).toEqual(newSort);
+    });
 
-		expect(component.filter).toBeNull();
-		const promise = new Promise(resolve => {
-			messageService.$searchObserver.subscribe(resolve);
-		});
+    it('should listen to filter changes after being instantiated', async () => {
+        const newFilter: FilterObject = { key: 'title', value: 'something' };
 
-		messageService.runSearch(newFilter);
-		const filter = await promise;
+        expect(component.filter).toBeNull();
+        const promise = new Promise(resolve => {
+            messageService.$searchObserver.subscribe(resolve);
+        });
 
-		expect(filter).toEqual(newFilter);
-		expect(component.filter).toEqual(newFilter);
-		expect(component.paginator.page).toEqual(0);
-	});
+        messageService.runSearch(newFilter);
+        const filter = await promise;
 
-	it('should request items onInit', async () => {
-		expect(component.dataLoaded).toEqual(false);
-		expect(component.items).toEqual([]);
+        expect(filter).toEqual(newFilter);
+        expect(component.filter).toEqual(newFilter);
+        expect(component.paginator.page).toEqual(0);
+    });
 
-		await component.ngOnInit();
+    it('should request items onInit', async () => {
+        expect(component.dataLoaded).toEqual(false);
+        expect(component.items).toEqual([]);
 
-		expect(component.dataLoaded).toEqual(true);
-		expect(component.items).toEqual(response.items);
-	});
+        await component.ngOnInit();
 
-	it('should log error and continue executing when onInit fails', async () => {
-		expect(component.dataLoaded).toEqual(false);
-		expect(component.items).toEqual([]);
+        expect(component.dataLoaded).toEqual(true);
+        expect(component.items).toEqual(response.items);
+    });
 
-		httpObject.get = () => new Observable(obs => obs.error(new Error('something')));
-		await component.ngOnInit();
+    it('should log error and continue executing when onInit fails', async () => {
+        expect(component.dataLoaded).toEqual(false);
+        expect(component.items).toEqual([]);
 
-		expect(component.dataLoaded).toEqual(true);
-		expect(component.items).toEqual([]);
-	});
+        httpObject.get = () => new Observable(obs => obs.error(new Error('something')));
+        await component.ngOnInit();
+
+        expect(component.dataLoaded).toEqual(true);
+        expect(component.items).toEqual([]);
+    });
 });
