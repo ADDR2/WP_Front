@@ -30,7 +30,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     * I would have increase the page size for larger screens, but 5 was required.
     * I would have created an expandable layer or side panel for displaying favorite items intead of a modal/dialog, but again it was required.
     * The pagination is not displayed for some devices because I think it would have been better to create a virtual scroll or something that renders more items on demand.
-    * There are no tests.
+    * There are some tests (6). This is not a good coverage but it's a start :).
     * The given endpoint to request items does not provide the CORS header, therefore if you want to use the app in Chrome, you should disable the security rule for CORS.
     * If you see a button, or something that looks like a button, don't be afraid and click it ;).
 
